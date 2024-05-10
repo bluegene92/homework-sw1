@@ -31,4 +31,11 @@ jobs:
         echo "${{ secrets.EC2_HOSTNAME }}"
         echo "${{ secrets.EC2_USERNAME }}"
         chmod 600 ~/.ssh/id_rsa
+        
+    - name: Deploy to EC2
+      env:
+        EC2_HOSTNAME: ${{ secrets.EC2_HOSTNAME }} # Add your EC2 instance's public DNS or IP as a GitHub Secret
+        EC2_USERNAME: ${{ secrets.EC2_USERNAME }} # Add your EC2 instance's username as a GitHub Secret
+      run: |
+        scp -r -o StrictHostKeyChecking=no ./* $EC2_USERNAME@$EC2_HOSTNAME:/home/ec2-user
     
