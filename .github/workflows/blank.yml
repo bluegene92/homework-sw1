@@ -30,8 +30,9 @@ jobs:
         run: echo Hello, world!
 
       - name: Copy code to EC2
-        run: scp -r -i ~/Desktop/my-oc-keypair.pem /Applications/XAMPP/htdocs/HTMLSite ec2-user@174.129.217.196:/home/ec2-user/testfolder
-
+        run: scp -r -i /dev/stdin /Applications/XAMPP/htdocs/HTMLSite ec2-user@174.129.217.196:/home/ec2-user/testfolder
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
