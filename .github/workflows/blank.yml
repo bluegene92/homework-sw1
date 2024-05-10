@@ -38,5 +38,5 @@ jobs:
         EC2_HOSTNAME: ${{ secrets.EC2_HOSTNAME }} # Add your EC2 instance's public DNS or IP as a GitHub Secret
         EC2_USERNAME: ${{ secrets.EC2_USERNAME }} # Add your EC2 instance's username as a GitHub Secret
       run: |
-        scp -r -i $SSH_PRIVATE_KEY ./* $EC2_USERNAME@$EC2_HOSTNAME:/home/ec2-user
+        scp -r -i $SSH_PRIVATE_KEY ./* ec2-user@174.129.217.196:/home/ec2-user
     
